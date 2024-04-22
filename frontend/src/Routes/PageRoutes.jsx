@@ -5,10 +5,12 @@ import Appointment from '../pages/Appointment';
 import AboutUs from '../pages/AboutUs';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
+import Navbar from '../components/Navbar';
 
 const PageRoutes = () => {
   return (
     <Router>
+        <Navbar />
         <Routes>
             <Route path='/' element={<Navigate to='home' />} />
             <Route path='/home' element={<Home />} />

@@ -6,8 +6,7 @@ import axios from "axios";
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
-  const { isAuthenticated, setIsAuthenticated } = useContext(Context);
-  const [showFirstName, setShowFirstName] = useState("");
+  const { isAuthenticated, setIsAuthenticated, user } = useContext(Context);
   const navigate = useNavigate();
   const handleLogout = async() => {
     try {
@@ -21,12 +20,6 @@ const Navbar = () => {
         toast.error(err.response.data.message);
     }
   }
-  axios.get("http://localhost:4000/api/v1/user/patient/me", {
-    withCredentials: true
-  }).then(res => {
-    setIsAuthenticated(true);
-    setShowFirstName(res.data.firstName);
-  })
   const gotoLogin = () => {
     navigate("/login");
   }
@@ -40,7 +33,7 @@ const Navbar = () => {
                 <Link to={'/about'}>ABOUT US</Link>
             </div>
             {
-              isAuthenticated ? (<p>{`Welcome ${showFirstName}`}</p>) : (<></>)
+              isAuthenticated ? (<p>{`Welcome ${user}`}</p>) : (<></>)
             }
             {
                 isAuthenticated ? (<button className='logoutBtn btn' onClick={handleLogout}>LOGOUT</button>) : (<button className='logoutBtn btn' onClick={gotoLogin}>LOGIN</button>)
