@@ -3,9 +3,10 @@ import { Context } from '../main';
 import { useNavigate, Navigate, Link } from 'react-router-dom';
 import axios from "axios";
 import { toast } from "react-toastify"
+import { FaGoogle } from "react-icons/fa";
 
 const Login = () => {
-  const { isAuthenticated, setIsAuthenticated } = useContext(Context);
+  const { isAuthenticated, setIsAuthenticated, setUser, user } = useContext(Context);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -26,6 +27,9 @@ const Login = () => {
     } catch (err) {
       toast.error(err.response.data.message)
     }
+  }
+  const onLogin = () => {
+    
   }
   if(isAuthenticated) {
     return (
@@ -49,6 +53,10 @@ const Login = () => {
           <button type="submit">Login</button>
         </div>
       </form>
+      <div>________________________________________________________________________</div>
+      <div>
+        <button style={{marginTop: "20px", borderRadius: "30px", width: "100%", color: "black", background: "white"}}><FaGoogle style={{marginBottom: "-5px", marginRight: "10px"}} onClick={onLogin} /> Sign in with Google</button>
+      </div>
     </div>
   )
 }

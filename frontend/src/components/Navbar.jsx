@@ -3,6 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from '../main';
 import { toast } from "react-toastify";
 import axios from "axios";
+import { GiHamburgerMenu } from "react-icons/gi"
+import logo from '../assets/logo.png'
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
@@ -25,19 +27,24 @@ const Navbar = () => {
   }
   return (
     <nav className='container'>
-        <div className='logo'>Trucare</div>
+        <div className='logo'>
+          <img src={logo} alt="logo" className="logo-img"/>
+        </div>
         <div className={show ? "navLinks showmenu" : "navLinks"}>
             <div className='links'>
-                <Link to={"/"}>HOME</Link>
+                <Link to={"/"}>HOME</Link>           
                 <Link to={'/appointment'}>APPOINTMENT</Link>
                 <Link to={'/about'}>ABOUT US</Link>
             </div>
             {
-              isAuthenticated ? (<p>{`Welcome ${user}`}</p>) : (<></>)
+              isAuthenticated ? <p>{`Welcome ${user}`}</p> : null
             }
             {
                 isAuthenticated ? (<button className='logoutBtn btn' onClick={handleLogout}>LOGOUT</button>) : (<button className='logoutBtn btn' onClick={gotoLogin}>LOGIN</button>)
             }
+        </div>
+        <div className='hamburger' onClick={() => setShow(!show)}>
+          <GiHamburgerMenu />
         </div>
     </nav>
   )
