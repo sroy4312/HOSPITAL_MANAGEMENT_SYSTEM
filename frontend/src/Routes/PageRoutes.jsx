@@ -5,6 +5,8 @@ import Appointment from '../pages/Appointment';
 import AboutUs from '../pages/AboutUs';
 import Register from '../pages/Register';
 import Login from '../pages/Login';
+import Forgot_Password from '../pages/ForgotPassword';
+import Reset_Password from '../pages/ResetPassword';
 import Navbar from '../components/Navbar';
 import { Context } from '../main';
 import axios from "axios";
@@ -37,6 +39,8 @@ const PageRoutes = () => {
             <Route path='/about' element={<AboutUs />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
+            <Route path='/forgot-password' element={<Forgot_Password />} />
+            <Route path='/reset-password' element={<Reset_Password />} />
         </Routes>
         <Footer />
     </Router>

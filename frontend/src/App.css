@@ -59,6 +59,20 @@ h6 {
   font-size: 24px;
   font-weight: 700;
 }
+
+.banner {
+  flex: 1;
+}
+.banner:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.banner:last-child img {
+  max-width: 450px;
+}
+
+
 @media (max-width: 1186px) {
   h1 {
     font-size: 32px;

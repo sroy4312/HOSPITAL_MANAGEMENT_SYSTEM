@@ -1,5 +1,5 @@
 const express = require('express');
-const { isAdminAuthenticated, isPatientAuthenticated } = require('../middlewares/auth.js');
+const { isAdminAuthenticated, isPatientAuthenticated, isDoctorAuthenticated } = require('../middlewares/auth.js');
 const { postAppointment, getAllAppointments, updateAppointmentStatus, deleteAppointment } = require('../controller/appointmentController.js');
 
 
@@ -9,7 +9,7 @@ router.post("/book_appointment", isPatientAuthenticated, postAppointment);
 
 
 // This route needs to be changed while implementing the doctor page
-// The admin control will be changed to doctor control
+// The admin control will be changed to doctor control   
 router.get("/get_appointments", isAdminAuthenticated, getAllAppointments);
 
 router.put("/update_appointment/:id", isAdminAuthenticated, updateAppointmentStatus);

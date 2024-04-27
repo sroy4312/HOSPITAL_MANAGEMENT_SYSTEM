@@ -1,6 +1,6 @@
-const { patientRegister, login, addNewAdmin, getAllDoctors, getAdminDetails, getPatientDetails, logoutAdmin, logoutUser, addNewDoctor } = require('../controller/userController.js');
+const { patientRegister, login, addNewAdmin, getAllDoctors, getAdminDetails, getPatientDetails, logoutAdmin, logoutUser, addNewDoctor, logoutDoctor } = require('../controller/userController.js');
 const express = require('express');
-const { isAdminAuthenticated, isPatientAuthenticated } = require('../middlewares/auth.js');
+const { isAdminAuthenticated, isPatientAuthenticated, isDoctorAuthenticated } = require('../middlewares/auth.js');
 
 const router = express.Router();
 
@@ -13,5 +13,6 @@ router.get("/patient/me", isPatientAuthenticated, getPatientDetails)
 router.get("/admin/logout", isAdminAuthenticated, logoutAdmin)
 router.get("/patient/logout", isPatientAuthenticated, logoutUser)
 router.post("/doctor/addnew", isAdminAuthenticated, addNewDoctor)
+router.get("/doctor/logout", isDoctorAuthenticated, logoutDoctor)
 
 module.exports = router;

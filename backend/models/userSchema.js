@@ -57,7 +57,14 @@ const userSchema = new mongoose.Schema({
   docAvatar: {
     public_id: String,
     url: String
-  }
+  },
+  appointments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Appointment',
+      required: true
+    }
+  ]
 });
 
 

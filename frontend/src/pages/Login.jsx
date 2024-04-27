@@ -49,6 +49,7 @@ const Login = () => {
           <p style={{marginBottom: 0}}>Don't have an account?</p>
           <Link to={"/register"} style={{textDecoration: "none", alignItems: "center"}}>Create Account</Link>
         </div>
+        <Link to={"/forgot-password"} style={{textDecoration: "none", justifyContent: "flex-start"}}>Forgot password</Link>
         <div style={{justifyContent: "center", alignItems: "center"}}>
           <button type="submit">Login</button>
         </div>

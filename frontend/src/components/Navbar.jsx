@@ -36,9 +36,8 @@ const Navbar = () => {
                 <Link to={'/appointment'}>APPOINTMENT</Link>
                 <Link to={'/about'}>ABOUT US</Link>
             </div>
-            {
-              isAuthenticated ? <p>{`Welcome ${user}`}</p> : null
-            }
+            <p>Welcome </p>
+            <p>{user && `${user.firstName} ${user.lastName}`}</p>
             {
                 isAuthenticated ? (<button className='logoutBtn btn' onClick={handleLogout}>LOGOUT</button>) : (<button className='logoutBtn btn' onClick={gotoLogin}>LOGIN</button>)
             }

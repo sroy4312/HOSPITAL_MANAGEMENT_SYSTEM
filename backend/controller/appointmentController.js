@@ -27,6 +27,7 @@ const postAppointment = catchAsyncErrors(async(req, res, next) => {
         firstname: doctor_firstname,
         lastname: doctor_lastname
     }, hasVisited, address, doctorId, patientId});
+    await User.updateOne({appointments: appointment}, {$role: "Doctor"})
     res.status(200).json({
         success: true,
         message: "Appointment booked",

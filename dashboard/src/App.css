@@ -111,6 +111,7 @@ body {
   font-size: 24px;
   margin-bottom: 30px;
   background: linear-gradient(140deg, #9083d5, #271776ca);
+  cursor: pointer;
 }
 .form-component .wrapper {
   display: flex;
@@ -529,6 +530,7 @@ body {
   input:file-selector-button {
   position: absolute;
   width: 100%;
+  cursor: pointer;
 }
 .add-doctor-form form .first-wrapper div:last-child {
   flex: 2;
@@ -555,6 +557,7 @@ body {
   font-size: 24px;
   margin-bottom: 30px;
   background: linear-gradient(140deg, #9083d5, #271776ca);
+  cursor: pointer;
 }
 @media (max-width: 945px) {
   .add-doctor-form form .first-wrapper {

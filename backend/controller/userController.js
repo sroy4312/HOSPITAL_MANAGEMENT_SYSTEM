@@ -3,6 +3,7 @@ const { ErrorHandler } = require('../middlewares/errorMiddleware.js');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors.js');
 const generateToken = require('../utils/jwtToken.js');
 const cloudinary = require('cloudinary');
+const Appointment = require('../models/appointmentSchema.js');
 
 const patientRegister = catchAsyncErrors(async(req, res, next) => {
     const { firstName, lastName, email, phone, nic, password, gender, dob, role } = req.body;
@@ -56,7 +57,7 @@ const addNewAdmin = catchAsyncErrors(async(req, res, next) => {
 })
 
 const getAllDoctors = catchAsyncErrors(async(req, res, next) => {
-    const doctors = await User.find({ role: "Doctor" })
+    const doctors = await User.find({ role: "Doctor" }).populate();
     if(!doctors) {
         return next(new ErrorHandler("No doctors found"), 404);
     }
@@ -127,7 +128,7 @@ const addNewDoctor = catchAsyncErrors(async(req, res, next) => {
     const doctor = await User.create({firstName, lastName, email, phone, nic, password, gender, dob, doctorDepartment, role: "Doctor", docAvatar: {
         public_id: cloudinaryResponse.public_id,
         url: cloudinaryResponse.secure_url
-    }});
+    }}, appintments);
     res.status(200).json({
         success: true,
         message: "Doctor added successfully",
@@ -135,5 +136,15 @@ const addNewDoctor = catchAsyncErrors(async(req, res, next) => {
     })
 })
 
+const logoutDoctor = catchAsyncErrors(async(req, res, next) => {
+    res.status(200).cookie("doctorToken", "", {
+        httpOnly: true,
+        expires: new Date(Date.now())
+    }).json({
+        success: true,
+        message: "User logged out successfully"
+    })
+})
 
-module.exports = { patientRegister, login, addNewAdmin, getAllDoctors, getAdminDetails, getPatientDetails, logoutAdmin, logoutUser, addNewDoctor };
+
+module.exports = { patientRegister, login, addNewAdmin, getAllDoctors, getAdminDetails, getPatientDetails, logoutAdmin, logoutUser, addNewDoctor, logoutDoctor };
